@@ -4,5 +4,7 @@
 /.vscode
 groceryshop/.env
 Pipfile
-media/
+/assets/uploads/*
+/assets/vendor
+/node_modules
 
