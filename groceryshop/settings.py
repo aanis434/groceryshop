@@ -46,9 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'accounts',
     'products',     # >> products - brand - category related apps
-    'stocks'        # >> stocks - report - history related apps
+    'stocks',        # >> stocks - report - history related apps
+    'clients',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'  # changes the bulid-in user model
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
