@@ -3,7 +3,6 @@
 .idea
 /.vscode
 groceryshop/.env
-Pipfile
 /assets/uploads/*
 /assets/vendor
 /node_modules
