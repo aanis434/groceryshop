@@ -15,12 +15,12 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- Bootstrap select pluings -->
-        <link href="assets/libs/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+<!--        <link href="assets/libs/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
 
         <!-- App css -->
         <link href="{% static 'vendor/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+<!--        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />-->
+<!--        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />-->
 
     </head>
 
@@ -39,19 +39,31 @@
                                     <span><img src="assets/images/logo-dark.png" alt="" height="30"></span>
                                 </a>
                             </div>
-
-                            <form action="#">
-
+                            {% include 'layouts/event.html' %}
+                            <form action="" method="post" novalidate>
+                                {% csrf_token %}
                                 <div class="form-group mb-3">
-                                    <label for="emailaddress">Email address</label>
-                                    <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                                    <input class="form-control" type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" value="{{ form.email.value }}" required="" placeholder="Enter email address">
+
+                                    {% for error in form.email.errors %}
+                                        <span class="text-danger">
+                                            <strong>{{ error }}</strong>
+                                        </span>
+                                    {% endfor %}
                                 </div>
 
                                 <a href="page-recoverpw.html" class="text-muted float-right">Forgot your password?</a>
 
                                 <div class="form-group mb-3">
-                                    <label for="password">Password</label>
-                                    <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                    <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                                    <input class="form-control {% if form.password.errors %}is_invalid{% endif %}" type="password" required="" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value }}" placeholder="Enter password">
+
+                                    {% for error in form.password.errors %}
+                                        <span class="text-danger">
+                                            <strong>{{ error }}</strong>
+                                        </span>
+                                    {% endfor %}
                                 </div>
 
                                 <div class="form-group mb-3">
@@ -87,13 +99,13 @@
 
 
         <!-- Vendor js -->
-        <script src="assets/js/vendor.min.js"></script>
+<!--        <script src="assets/js/vendor.min.js"></script>-->
 
         <!-- Bootstrap select plugin -->
-        <script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+<!--        <script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>-->
 
         <!-- App js -->
-        <script src="assets/js/app.min.js"></script>
+<!--        <script src="assets/js/app.min.js"></script>-->
 
     </body>
 

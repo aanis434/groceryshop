@@ -5,7 +5,7 @@ from django.db import models
 
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name=None, last_name=None, password=None, is_active=True, is_staff=False,
-                    is_admin=False, is_employee=False):
+                    is_admin=False, is_client=False):
         if not email:
             raise ValueError('Users must have a email address')
         if not password:
@@ -18,7 +18,7 @@ class UserManager(BaseUserManager):
         )
 
         user_obj.set_password(password)
-        user_obj.employee = is_employee
+        user_obj.client = is_client
         user_obj.staff = is_staff
         user_obj.admin = is_admin
         user_obj.active = is_active
@@ -34,7 +34,7 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             password=password,
             is_staff=True,
-            is_employee=True,
+            is_client=True,
         )
         return user
 
@@ -46,7 +46,7 @@ class UserManager(BaseUserManager):
             password=password,
             is_staff=True,
             is_admin=True,
-            is_employee=False,
+            is_client=False,
         )
         user.is_superuser = True
         return user
@@ -59,7 +59,7 @@ class User(AbstractBaseUser):
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False, null=True)
     admin = models.BooleanField(default=False)
-    employee = models.BooleanField(default=False)
+    client = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False, null=True)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True, default=None,
                               related_name='group')
