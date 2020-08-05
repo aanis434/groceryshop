@@ -18,11 +18,11 @@ class UserAdmin(BaseUserAdmin):
     # that reference specific fields on auth.User.
 
     list_display = ('first_name', 'last_name', 'email', 'admin', 'staff', 'group')
-    list_filter = ('admin', 'employee', 'active')
+    list_filter = ('admin', 'client', 'active')
     fieldsets = (
         (None, {'fields': ('email', 'password', 'new_password', 'new_password_confirmation')}),
         ('Personal info', {'fields': ('first_name', 'last_name')}),
-        ('Permissions', {'fields': ('admin', 'employee', 'active', 'group')}),
+        ('Permissions', {'fields': ('admin', 'client', 'active', 'group')}),
     )
     filter_horizontal = ()
 
