@@ -19,6 +19,8 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "bootstrap-select": "^1.13.18",
-    "c3": "^0.7.18"
+    "c3": "^0.7.18",
+    "dropify": "^0.2.2",
+    "switchery": "^0.8.2"
   }
 }

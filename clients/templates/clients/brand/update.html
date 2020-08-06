@@ -1,0 +1,45 @@
+{% extends 'clients/layouts/master.html' %}
+{% load static %}
+{% block title %}Brand | Edit{% endblock %}
+
+{% block styles %}
+    <!-- Plugins css -->
+    <link href="{% static 'vendor/switchery/dist/switchery.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/dropify/dist/css/dropify.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <a href="{% url 'client:brand' %}" class="btn btn-success waves-effect waves-light">Brand List</a>
+                    </div>
+                    <h4 class="page-title">Edit Brand</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        {% include 'clients/brand/form.html' %}
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div> <!-- end container-fluid -->
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'vendor/switchery/dist/switchery.min.js' %}"></script>
+    <script src="{% static 'vendor/dropify/dist/js/dropify.min.js' %}"></script>
+    <script src="{% static 'js/pages/form-advanced.init.js' %}"></script>
+    <script src="{% static 'js/pages/form-fileuploads.init.js' %}"></script>
+{% endblock %}

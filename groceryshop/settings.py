@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'Templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'assets')  # Django Static Dir
-MEDIA_DIR = os.path.join(BASE_DIR, 'uploads')
+MEDIA_DIR = os.path.join(STATIC_DIR, 'uploads')
 
 
 # Quick-start development settings - unsuitable for production

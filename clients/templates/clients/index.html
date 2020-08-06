@@ -1,0 +1,23 @@
+{% extends 'clients/layouts/master.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Welcome John !</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+    </div> <!-- end container-fluid -->
+{% endblock %}
+
+{% block scripts %}
+    <!-- dashboard init -->
+    <script src="{% static 'js/pages/dashboard.init.js' %}"></script>
+{% endblock %}
