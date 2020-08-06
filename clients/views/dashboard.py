@@ -9,7 +9,7 @@ from clients.forms import LoginClientForm
 
 
 class IndexView(TemplateView):
-    template_name = 'clients/dashboard/index.html'
+    template_name = 'clients/index.html'
 
 
 class LoginView(FormView):
