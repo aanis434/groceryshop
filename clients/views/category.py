@@ -5,6 +5,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from clients.forms.product import CategoryForm
 from products.models import Category
+from django.db.models import Q
 
 
 class CategoryListView(ListView):
@@ -15,7 +16,8 @@ class CategoryListView(ListView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        context['parent_list'] = Category.objects.all().filter(parent_id=None)
+        context['object_list'] = Category.objects.filter(
+            parent_id=None)
         return context
 
 
