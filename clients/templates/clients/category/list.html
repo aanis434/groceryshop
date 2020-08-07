@@ -39,14 +39,18 @@
                                 {% for obj in object_list %}
                                 <tr>
                                     <th scope="row">{{ forloop.counter }}</th>
-                                    <td>{{ obj.parent_id.name }}</td>
                                     <td>{{ obj.name }}</td>
+                                    <td>
+                                        {% for child in obj.parent_category.all %}
+                                        {{ child }} <sup><i class="fe-edit"></i></sup> <i class="fe-delete"></i>
+                                        {% endfor %}
+                                    </td>
                                     <td>
                                         {% if obj.icon %}
                                         <img src="{{obj.icon.url}}" alt="{{ obj.name }}">
                                         {% endif %}
                                     </td>
-                                    <td>{{  value|yesno:"Active,Inactive" }}</td>
+                                    <td>{{  obj.status|yesno:"Active,Inactive" }}</td>
                                     <td>
                                         <a href="{% url 'client:categoryEdit' obj.id %}"><i class="fe-edit"></i></a>
                                         <a href="javascript:void();" data-toggle="modal"
