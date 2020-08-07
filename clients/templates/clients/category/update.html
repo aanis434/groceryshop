@@ -1,6 +1,6 @@
 {% extends 'clients/layouts/master.html' %}
 {% load static %}
-{% block title %}Brand | Create{% endblock %}
+{% block title %}Category | Edit{% endblock %}
 
 {% block styles %}
 <!-- Plugins css -->
@@ -16,9 +16,10 @@
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                    <a href="{% url 'client:brand' %}" class="btn btn-success waves-effect waves-light">Brand List</a>
+                    <a href="{% url 'client:category' %}" class="btn btn-success waves-effect waves-light">Category
+                        List</a>
                 </div>
-                <h4 class="page-title">Add New Brand</h4>
+                <h4 class="page-title">Edit Category</h4>
             </div>
         </div>
     </div>
@@ -27,7 +28,7 @@
         <div class="col-xl-12 col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    {% include 'clients/brand/form.html' %}
+                    {% include 'clients/category/form.html' %}
                 </div>
             </div>
         </div>

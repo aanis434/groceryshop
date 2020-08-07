@@ -1,0 +1,241 @@
+{% load static %}
+<form class="" action="" method="post" novalidate enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+        <input type="text" class="form-control {% if form.name.errors %}parsley-error{% endif %}" required
+            value="{{ form.name.value|default_if_none:'' }}" name="{{ form.name.name }}"
+            id="{{ form.name.id_for_label }}" />
+
+        {% for error in form.name.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.parent_id.id_for_label }}">{{ form.category_id.label }}</label>
+        {{ form.category_id }}
+
+        {% for error in form.category_id.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.parent_id.id_for_label }}">{{ form.brand_id.label }}</label>
+        {{ form.brand_id }}
+
+        {% for error in form.brand_id.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">{{ form.price.label }}</label>
+        <input type="text" class="form-control {% if form.price.errors %}parsley-error{% endif %}" required
+            value="{{ form.price.value|default_if_none:'' }}" name="{{ form.price.name }}"
+            id="{{ form.price.id_for_label }}" />
+
+        {% for error in form.price.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.unit.id_for_label }}">{{ form.unit.label }}</label>
+        <input type="text" class="form-control {% if form.name.errors %}parsley-error{% endif %}" required
+            value="{{ form.unit.value|default_if_none:'' }}" name="{{ form.unit.name }}"
+            id="{{ form.unit.id_for_label }}" />
+
+        {% for error in form.unit.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.sku.id_for_label }}">{{ form.sku.label }}</label>
+        <input type="text" class="form-control {% if form.name.errors %}parsley-error{% endif %}" required
+            value="{{ form.sku.value|default_if_none:'' }}" name="{{ form.sku.name }}"
+            id="{{ form.sku.id_for_label }}" />
+
+        {% for error in form.sku.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.sku.id_for_label }}">{{ form.sku.label }}</label>
+        <input type="text" class="form-control {% if form.name.errors %}parsley-error{% endif %}" required
+            value="{{ form.sku.value|default_if_none:'' }}" name="{{ form.sku.name }}"
+            id="{{ form.sku.id_for_label }}" />
+
+        {% for error in form.sku.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.parent_id.id_for_label }}">{{ form.purchase_limit.label }}</label>
+        {{ form.purchase_limit }}
+
+        {% for error in form.purchase_limit.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.purchase_limit_quantity.id_for_label }}">{{ form.purchase_limit_quantity.label }}</label>
+        <input type="text" class="form-control" value="{{ form.sku.value|default_if_none:'' }}"
+            name="{{ form.purchase_limit_quantity.name }}" id="{{ form.purchase_limit_quantity.id_for_label }}" />
+
+        {% for error in form.purchase_limit_quantity.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.parent_id.id_for_label }}">{{ form.discounted.label }}</label>
+        {{ form.discounted }}
+
+        {% for error in form.discounted.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.discounted_price.id_for_label }}">{{ form.discounted_price.label }}</label>
+        <input type="text" class="form-control" value="{{ form.discounted_price.value|default_if_none:'' }}"
+            name="{{ form.discounted_price.name }}" id="{{ form.discounted_price.id_for_label }}" />
+
+        {% for error in form.discounted_price.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.vat.id_for_label }}">{{ form.vat.label }}</label>
+        {{ form.vat }}
+
+        {% for error in form.vat.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.vat_rate.id_for_label }}">{{ form.vat_rate.label }}</label>
+        <input type="text" class="form-control" value="{{ form.vat_rate.value|default_if_none:'' }}"
+            name="{{ form.vat_rate.name }}" id="{{ form.vat_rate.id_for_label }}" />
+
+        {% for error in form.vat_rate.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.on_offer.id_for_label }}">{{ form.on_offer.label }}</label>
+        {{ form.on_offer }}
+
+        {% for error in form.on_offer.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.featured.id_for_label }}">{{ form.featured.label }}</label>
+        {{ form.featured }}
+
+        {% for error in form.featured.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.badge.id_for_label }}">{{ form.badge.label }}</label>
+        {{ form.badge }}
+
+        {% for error in form.badge.errors %}
+        <span class="text-danger">
+            <strong>{{ error }}</strong>
+        </span>
+        {% endfor %}
+    </div>
+
+
+    <div class="form-group">
+        <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+        <div>
+            <textarea required class="form-control" rows="3" id="{{ form.description.id_for_label }}"
+                name="{{ form.description.name }}">{{ form.description.value|default_if_none:'' }}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mt-3">
+                    <input type="file" class="dropify"
+                        data-default-file="{% if form.instance.icon %}{{ form.instance.icon.url }}{% endif %}"
+                        name="{{form.icon.name}}" accept="image/*" />
+                    <p class="text-muted text-center mt-2 mb-0">{{ form.icon.label }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mt-3">
+                    <input type="file" class="dropify"
+                        data-default-file="{% if form.instance.feature_image %}{{form.instance.feature_image.url}}{% endif %}"
+                        name="{{form.feature_image.name}}" accept="image/*" />
+                    <p class="text-muted text-center mt-2 mb-0">{{ form.feature_image.label }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="switchery-demo">
+            <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+            <input type="checkbox" name="{{ form.status.name }}" {% if form.status.value %}checked{% endif %}
+                id="{{ form.status.id_for_label }}" data-plugin="switchery" data-color="#1bb99a" />
+        </div>
+    </div>
+
+    <div class="form-group mb-0">
+        <div>
+            <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                Submit
+            </button>
+            <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>

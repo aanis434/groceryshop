@@ -32,7 +32,7 @@ class Category(models.Model):
     name = models.CharField(max_length=240)
     slug = models.CharField(max_length=240)
     parent_id = models.ForeignKey(
-        "self", null=True, related_name='parent_category', on_delete=models.SET_NULL)
+        "self", null=True, blank=True, related_name='parent_category', on_delete=models.SET_NULL)
     description = models.TextField(null=True, blank=True)
     icon = models.ImageField(upload_to='category/icon/', blank=True, null=True)
     feature_image = models.ImageField(
@@ -44,6 +44,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('clients:category')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -65,16 +68,22 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     unit = models.CharField(max_length=50, null=True, blank=True)
     sku = models.CharField(max_length=100, null=True, blank=True)
-    purchase_limit = models.CharField(max_length=5, choices=YES_NO_CHOICES, default='No')
+    purchase_limit = models.CharField(
+        max_length=5, choices=YES_NO_CHOICES, default='no')
     purchase_limit_quantity = models.IntegerField(blank=True, null=True)
-    discounted = models.CharField(max_length=5, choices=YES_NO_CHOICES, default='No')
-    discounted_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    on_offer = models.CharField(max_length=5, choices=YES_NO_CHOICES, default='No')
-    featured = models.CharField(max_length=5, choices=YES_NO_CHOICES, default='No')
+    discounted = models.CharField(
+        max_length=5, choices=YES_NO_CHOICES, default='no')
+    discounted_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True)
+    on_offer = models.CharField(
+        max_length=5, choices=YES_NO_CHOICES, default='no')
+    featured = models.CharField(
+        max_length=5, choices=YES_NO_CHOICES, default='no')
     badge = models.CharField(max_length=10, choices=(('sale', 'Sale'), ('hot', 'Hot'), ('limited', 'Limited')),
                              null=True, blank=True)
-    vat = models.CharField(max_length=5, choices=YES_NO_CHOICES, default='No')
-    vat_rate = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    vat = models.CharField(max_length=5, choices=YES_NO_CHOICES, default='no')
+    vat_rate = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True)
     short_description = models.TextField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='products/', blank=True, null=True)
