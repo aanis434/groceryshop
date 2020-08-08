@@ -1,3 +1,6 @@
+import os
+
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -33,5 +36,6 @@ class BrandDeleteView(SuccessMessageMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
+
         messages.success(self.request, self.success_message % obj.__dict__)
         return super().delete(request, *args, **kwargs)
