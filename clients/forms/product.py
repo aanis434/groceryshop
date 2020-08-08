@@ -14,10 +14,16 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ('name', 'parent_id', 'description',
-                  'icon', 'feature_image', 'status')
+                  'logo', 'feature_image', 'status')
 
     def __init__(self, *args, **kwargs):
         super(CategoryForm, self).__init__(*args, **kwargs)
+
+        if kwargs['instance']:
+            sub_category = list(kwargs['instance'].parent_category.values_list('id', flat=True))
+            sub_category.append(kwargs['instance'].id)
+            self.fields['parent_id'].queryset = Category.objects.exclude(id__in=sub_category)
+
         self.fields['parent_id'].label = "Parent Category"
         self.fields['parent_id'].widget.attrs['class'] = 'form-control selectpicker'
         self.fields['parent_id'].widget.attrs['data-live-search'] = 'true'
