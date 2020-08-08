@@ -46,12 +46,12 @@
                                     <span class="btn btn-light">
                                              {{ child }}
                                              <i class="{{ child.status|yesno:'fe-eye,fe-eye-off' }}"
-                                                title="{{ child.status|yesno:'Active,Inactive' }}"></i>
+                                                title="" data-toggle="tooltip" data-placement="top" data-original-title="{{ child.status|yesno:'Active,Inactive' }}"></i>
                                              <a href="{% url 'client:categoryEdit' child.id %}"><i
-                                                 class="fe-edit text-dark" title="Edit"></i></a>
+                                                 class="fe-edit text-dark" data-toggle="tooltip" data-placement="top" data-original-title="Edit"></i></a>
                                              <a href="javascript:void();" data-toggle="modal"
                                                 data-target="#deleteModal_{{ child.id }}">
-                                                 <i class="fe-delete text-danger" title="Delete"></i>
+                                                 <i class="fe-delete text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Delete"></i>
                                              </a>
                                              <div class="modal" id="deleteModal_{{ child.id }}">
                                             <div class="modal-dialog">
@@ -83,14 +83,13 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <i class="{{ obj.status|yesno:'fe-eye btn btn-info,fe-eye-off btn btn-warning' }}"
-                                       title="{{ obj.status|yesno:'Active,Inactive' }}"></i>
+                                    <i class="{{ obj.status|yesno:'fe-eye btn btn-info,fe-eye-off btn btn-warning' }}" data-toggle="tooltip" data-placement="top" data-original-title="{{ obj.status|yesno:'Active,Inactive' }}"></i>
                                 </td>
                                 <td>
-                                    <a href="{% url 'client:categoryEdit' obj.id %}"><i class="fe-edit"></i></a>
+                                    <a href="{% url 'client:categoryEdit' obj.id %}"><i class="fe-edit btn btn-info" data-toggle="tooltip" data-placement="top" data-original-title="Edit"></i></a>
                                     <a href="javascript:void();" data-toggle="modal"
                                        data-target="#deleteModal_{{ obj.id }}">
-                                        <i class="fe-delete"></i>
+                                        <i class="fe-delete btn btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="Delete"></i>
                                     </a>
                                     <div class="modal" id="deleteModal_{{ obj.id }}">
                                         <div class="modal-dialog">
