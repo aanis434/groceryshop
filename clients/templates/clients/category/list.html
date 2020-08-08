@@ -37,48 +37,50 @@
                             </thead>
                             <tbody>
                                 {% for obj in object_list %}
-                                <tr>
-                                    <th scope="row">{{ forloop.counter }}</th>
-                                    <td>{{ obj.name }}</td>
-                                    <td>
-                                        {% for child in obj.parent_category.all %}
-                                        {{ child }} <sup><i class="fe-edit"></i></sup> <i class="fe-delete"></i>
-                                        {% endfor %}
-                                    </td>
-                                    <td>
-                                        {% if obj.icon %}
-                                        <img src="{{obj.icon.url}}" alt="{{ obj.name }}">
-                                        {% endif %}
-                                    </td>
-                                    <td>{{  obj.status|yesno:"Active,Inactive" }}</td>
-                                    <td>
-                                        <a href="{% url 'client:categoryEdit' obj.id %}"><i class="fe-edit"></i></a>
-                                        <a href="javascript:void();" data-toggle="modal"
-                                            data-target="#deleteModal_{{ obj.id }}">
-                                            <i class="fe-delete"></i>
-                                        </a>
-                                        <div class="modal" id="deleteModal_{{ obj.id }}">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
+                                    {% if obj.parent_id == None or obj.parent_category.count > 0 %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ obj.name }}</td>
+                                        <td>
+                                            {% for child in obj.parent_category.all %}
+                                            {{ child }} <sup><i class="fe-edit"></i></sup> <i class="fe-delete"></i>
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% if obj.icon %}
+                                            <img src="{{obj.icon.url}}" alt="{{ obj.name }}">
+                                            {% endif %}
+                                        </td>
+                                        <td>{{  obj.status|yesno:"Active,Inactive" }}</td>
+                                        <td>
+                                            <a href="{% url 'client:categoryEdit' obj.id %}"><i class="fe-edit"></i></a>
+                                            <a href="javascript:void();" data-toggle="modal"
+                                                data-target="#deleteModal_{{ obj.id }}">
+                                                <i class="fe-delete"></i>
+                                            </a>
+                                            <div class="modal" id="deleteModal_{{ obj.id }}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
 
-                                                    <!-- Modal body -->
-                                                    <div class="modal-body text-center" style="padding: 50px;">
-                                                        <form action="{% url 'client:categoryDelete' obj.id %}"
-                                                            method="post">
-                                                            {% csrf_token %}
-                                                            <h5>Are you sure want to delete this?</h5>
-                                                            <br>
-                                                            <button type="submit"
-                                                                class="btn btn-danger">Confirm</button>
-                                                            <button type="button" class="btn btn-info"
-                                                                data-dismiss="modal">Cancel</button>
-                                                        </form>
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body text-center" style="padding: 50px;">
+                                                            <form action="{% url 'client:categoryDelete' obj.id %}"
+                                                                method="post">
+                                                                {% csrf_token %}
+                                                                <h5>Are you sure want to delete this?</h5>
+                                                                <br>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Confirm</button>
+                                                                <button type="button" class="btn btn-info"
+                                                                    data-dismiss="modal">Cancel</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
