@@ -26,61 +26,97 @@
                     <div class="table-responsive">
                         <table class="table m-0">
                             <thead>
-                                <tr>
-                                    <th>SL No</th>
-                                    <th>Parent Category</th>
-                                    <th>Sub Category</th>
-                                    <th>Logo</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
+                            <tr>
+                                <th>SL No</th>
+                                <th>Parent Category</th>
+                                <th>Sub Category</th>
+                                <th>Logo</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {% for obj in object_list %}
-                                    {% if obj.parent_id == None or obj.parent_category.count > 0 %}
-                                    <tr>
-                                        <th scope="row">{{ forloop.counter }}</th>
-                                        <td>{{ obj.name }}</td>
-                                        <td>
-                                            {% for child in obj.parent_category.all %}
-                                            {{ child }} <sup><i class="fe-edit"></i></sup> <i class="fe-delete"></i>
-                                            {% endfor %}
-                                        </td>
-                                        <td>
-                                            {% if obj.icon %}
-                                            <img src="{{obj.icon.url}}" alt="{{ obj.name }}">
-                                            {% endif %}
-                                        </td>
-                                        <td>{{  obj.status|yesno:"Active,Inactive" }}</td>
-                                        <td>
-                                            <a href="{% url 'client:categoryEdit' obj.id %}"><i class="fe-edit"></i></a>
-                                            <a href="javascript:void();" data-toggle="modal"
-                                                data-target="#deleteModal_{{ obj.id }}">
-                                                <i class="fe-delete"></i>
-                                            </a>
-                                            <div class="modal" id="deleteModal_{{ obj.id }}">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <!-- Modal body -->
-                                                        <div class="modal-body text-center" style="padding: 50px;">
-                                                            <form action="{% url 'client:categoryDelete' obj.id %}"
-                                                                method="post">
-                                                                {% csrf_token %}
-                                                                <h5>Are you sure want to delete this?</h5>
-                                                                <br>
-                                                                <button type="submit"
+                            {% for obj in object_list %}
+                            {% if obj.parent_id == None or obj.parent_category.count > 0 %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ obj.name }}</td>
+                                <td>
+                                    {% for child in obj.parent_category.all %}
+                                    <span class="btn btn-light">
+                                             {{ child }}
+                                             <i class="{{ child.status|yesno:'fe-eye,fe-eye-off' }}"
+                                                title="{{ child.status|yesno:'Active,Inactive' }}"></i>
+                                             <a href="{% url 'client:categoryEdit' child.id %}"><i
+                                                 class="fe-edit text-dark" title="Edit"></i></a>
+                                             <a href="javascript:void();" data-toggle="modal"
+                                                data-target="#deleteModal_{{ child.id }}">
+                                                 <i class="fe-delete text-danger" title="Delete"></i>
+                                             </a>
+                                             <div class="modal" id="deleteModal_{{ child.id }}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body text-center" style="padding: 50px;">
+                                                        <form action="{% url 'client:categoryDelete' child.id %}"
+                                                              method="post">
+                                                            {% csrf_token %}
+                                                            <h5>Are you sure want to delete this?</h5>
+                                                            <br>
+                                                            <button type="submit"
                                                                     class="btn btn-danger">Confirm</button>
-                                                                <button type="button" class="btn btn-info"
+                                                            <button type="button" class="btn btn-info"
                                                                     data-dismiss="modal">Cancel</button>
-                                                            </form>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+
+                                         </span>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% if obj.logo %}
+                                    <img src="{{obj.logo.url}}" alt="{{ obj.name }}">
                                     {% endif %}
-                                {% endfor %}
+                                </td>
+                                <td>
+                                    <i class="{{ obj.status|yesno:'fe-eye btn btn-info,fe-eye-off btn btn-warning' }}"
+                                       title="{{ obj.status|yesno:'Active,Inactive' }}"></i>
+                                </td>
+                                <td>
+                                    <a href="{% url 'client:categoryEdit' obj.id %}"><i class="fe-edit"></i></a>
+                                    <a href="javascript:void();" data-toggle="modal"
+                                       data-target="#deleteModal_{{ obj.id }}">
+                                        <i class="fe-delete"></i>
+                                    </a>
+                                    <div class="modal" id="deleteModal_{{ obj.id }}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- Modal body -->
+                                                <div class="modal-body text-center" style="padding: 50px;">
+                                                    <form action="{% url 'client:categoryDelete' obj.id %}"
+                                                          method="post">
+                                                        {% csrf_token %}
+                                                        <h5>Are you sure want to delete this?</h5>
+                                                        <br>
+                                                        <button type="submit"
+                                                                class="btn btn-danger">Confirm
+                                                        </button>
+                                                        <button type="button" class="btn btn-info"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
