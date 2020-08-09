@@ -33,6 +33,7 @@
                                     <th>Brand</th>
                                     <th>Image</th>
                                     <th>Price</th>
+                                    <th>Unit</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -50,12 +51,15 @@
                                         {% endif %}
                                     </td>
                                     <td>{{ obj.price }}</td>
-                                    <td>{{ obj.status }}</td>
+                                    <td>{{ obj.unit }}</td>
                                     <td>
-                                        <a href="{% url 'client:productEdit' obj.id %}"><i class="fe-edit"></i></a>
+                                        <i class="{{ obj.status|yesno:'fe-eye btn btn-info,fe-eye-off btn btn-warning' }}" data-toggle="tooltip" data-placement="top" data-original-title="{{ obj.status|yesno:'Active,Inactive' }}"></i>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'client:productEdit' obj.id %}"><i class="fe-edit btn btn-info"></i></a>
                                         <a href="javascript:void();" data-toggle="modal"
                                             data-target="#deleteModal_{{ obj.id }}">
-                                            <i class="fe-delete"></i>
+                                            <i class="fe-delete btn btn-danger"></i>
                                         </a>
                                         <div class="modal" id="deleteModal_{{ obj.id }}">
                                             <div class="modal-dialog">
