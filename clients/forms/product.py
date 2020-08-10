@@ -49,3 +49,4 @@ class ProductForm(forms.ModelForm):
         self.fields['featured'].widget.attrs['class'] = 'form-control selectpicker'
         self.fields['badge'].widget.attrs['class'] = 'form-control selectpicker'
         self.fields['vat'].widget.attrs['class'] = 'form-control selectpicker'
+        self.fields['purchase_limit_quantity'].label = "Purchase Limit Quantity"

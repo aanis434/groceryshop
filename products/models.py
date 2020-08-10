@@ -101,6 +101,9 @@ class Product(models.Model):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse('clients:productCreate')
+
 
 @receiver(models.signals.post_delete, sender=Brand)
 @receiver(models.signals.post_delete, sender=Category)
@@ -110,7 +113,8 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     Deletes file from filesystem
     when corresponding `MediaFile` object is deleted.
     """
-    if sender != 'Product':
+    print('sender: ', sender)
+    if sender != Product:
         if instance.logo:
             if os.path.isfile(instance.logo.path):
                 os.remove(instance.logo.path)

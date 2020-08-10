@@ -4,8 +4,8 @@
 
 {% block styles %}
 <!-- Plugins css -->
-<link href="{% static 'vendor/switchery/dist/switchery.min.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static 'vendor/dropify/dist/css/dropify.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/switchery/switchery.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'libs/dropify/dropify.min.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block content %}
@@ -24,8 +24,9 @@
         </div>
     </div>
     <!-- end page title -->
+    {% include 'layouts/event.html' %}
     <div class="row">
-        <div class="col-xl-12 col-lg-8">
+        <div class="col-xl-12 col-lg-12">
             <div class="card">
                 <div class="card-body">
                     {% include 'clients/product/form.html' %}
@@ -39,8 +40,8 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'vendor/switchery/dist/switchery.min.js' %}"></script>
-<script src="{% static 'vendor/dropify/dist/js/dropify.min.js' %}"></script>
+<script src="{% static 'libs/switchery/switchery.min.js' %}"></script>
+<script src="{% static 'libs/dropify/dropify.min.js' %}"></script>
 <script src="{% static 'js/pages/form-advanced.init.js' %}"></script>
 <script src="{% static 'js/pages/form-fileuploads.init.js' %}"></script>
 {% endblock %}
