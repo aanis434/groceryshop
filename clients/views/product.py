@@ -20,8 +20,8 @@ class ProductCreateView(SuccessMessageMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        categories()
-        self.categories()
+        obj = categories()
+        print('obj', obj)
         return context
 
     def categories(self):
@@ -47,6 +47,30 @@ class ProductDeleteView(SuccessMessageMixin, DeleteView):
 
 
 def categories():
-    pass
+    obj = Category.objects.filter(parent_id=None)
+    print('obj', obj)
+    i = 0
+    data = []
+    if obj:
+        for item in obj:
+            print('only_item: ', item)
+            print('item id: ', item.id)
+            if item.id:
+                data[i]['sub'] = sub_categories(item.id)
+                i = i + 1
+
+        return data
 
 
+def sub_categories(parent_id):
+    obj = Category.objects.filter(parent_id=parent_id)
+    i = 0
+    data = []
+    if obj:
+        for item in obj:
+            print(item)
+            if item.id:
+                data[i]['sub'] = sub_categories(item.id)
+                i = i + 1
+
+        return data
