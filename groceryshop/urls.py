@@ -17,8 +17,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='index.html')),
+    path('cart/', TemplateView.as_view(template_name='cart.html')),
+    path('checkout/', TemplateView.as_view(template_name='checkout.html')),
+    path('my-account/', TemplateView.as_view(template_name='login_register.html')),
+    path('contact-us/', TemplateView.as_view(template_name='contact.html')),
+    path('shop/', TemplateView.as_view(template_name='shop_sidebar.html')),
+    path('categories/', TemplateView.as_view(template_name='categories_sidebar.html')),
+    path('track-order/', TemplateView.as_view(template_name='track_order.html')),
     path('it-admin/', admin.site.urls),
     path('admin/', include('clients.urls', namespace='client')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
