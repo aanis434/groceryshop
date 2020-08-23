@@ -1,0 +1,41 @@
+<!-- List -->
+<ul id="headerSidebarList" class="u-header-collapse__nav">
+{% for cat in categories %}
+<li class="u-has-submenu u-header-collapse__submenu">
+    <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer"
+       href="javascript:;" data-toggle="collapse"
+       aria-controls="header_category_{{cat.id}}"
+       data-target="#header_category_{{cat.id}}">
+        {{ cat.name }}
+    </a>
+
+    <div id="header_category_{{cat.id}}" class="collapse"
+         data-parent="#headerSidebarContent">
+        <ul id="headerSidebarHomeMenu_{{cat.id}}"
+            class="u-header-collapse__nav-list">
+            <li><a class="u-header-collapse__submenu-nav-link"
+                   href="../home/index.html">Home v1</a></li>
+            <li><a class="u-header-collapse__submenu-nav-link"
+                   href="../home/index.html">Home v2</a></li>
+
+            <li class="u-has-submenu u-header-collapse__submenu">
+                <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer"
+                   href="javascript:;" data-toggle="collapse"
+                   aria-controls="header_category_id_{{cat.id}}"
+                   data-target="#header_category_id_{{cat.id}}">
+                    new category
+                </a>
+                <div id="header_category_id_{{cat.id}}" class="collapse"
+                 data-parent="#headerSidebarContent">
+                    <ul id="headerSidebarHomeMenu_{{cat.id}}_child"
+                        class="u-header-collapse__nav-list">
+                        <li><a class="u-header-collapse__submenu-nav-link"
+                               href="../home/index.html">Home v1</a></li>
+                    </ul>
+                </div>
+        </ul>
+    </div>
+</li>
+{% endfor %}
+</ul>
+<!-- End List -->
