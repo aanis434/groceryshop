@@ -19,8 +19,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('', include('products.urls', namespace='product')),
     path('cart/', TemplateView.as_view(template_name='cart.html')),
     path('checkout/', TemplateView.as_view(template_name='checkout.html')),
     path('my-account/', TemplateView.as_view(template_name='login_register.html')),
