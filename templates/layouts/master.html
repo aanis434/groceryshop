@@ -28,6 +28,7 @@
 
         <!-- CSS Electro Template -->
         <link rel="stylesheet" href="{% static 'frontend/css/theme.css' %}">
+        <link rel="stylesheet" href="{% static 'frontend/css/custom_style.css' %}">
         <!-- Page wise styles add  -->
         {% block styles %}
         {% endblock %}
@@ -99,6 +100,7 @@
         <script src="{% static 'frontend/js/components/hs.show-animation.js' %}"></script>
         <script src="{% static 'frontend/js/components/hs.go-to.js' %}"></script>
         <script src="{% static 'frontend/js/components/hs.selectpicker.js' %}"></script>
+        <script src="{% static 'frontend/js/custom_script.js' %}"></script>
 
         <!-- JS Plugins Init. -->
         <script>
@@ -199,12 +201,6 @@
                 $.HSCore.components.HSSelectPicker.init('.js-select');
             });
 
-            // Prevent closing from click inside dropdown
-            $(document).on('click', '.submenu', function (e) {
-                var current=$(this).next();
-                current.toggle();
-                e.stopPropagation();
-            });
 
         </script>
 

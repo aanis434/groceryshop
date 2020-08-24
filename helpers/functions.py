@@ -20,7 +20,7 @@ def generate_category():
             categories += "</ul></div></li>"
         else:
             categories += "<li><a class=\"u-header-collapse__submenu-nav-link\" " \
-                          "href=\"../home/index.html\">" + parent.name + "</a></li>"
+                          "href=\"/{}\">{}</a></li>".format(parent.slug, parent.name)
 
     return categories
 
