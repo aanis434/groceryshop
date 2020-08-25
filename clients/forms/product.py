@@ -50,3 +50,20 @@ class ProductForm(forms.ModelForm):
         self.fields['badge'].widget.attrs['class'] = 'form-control selectpicker'
         self.fields['vat'].widget.attrs['class'] = 'form-control selectpicker'
         self.fields['purchase_limit_quantity'].label = "Purchase Limit Quantity"
+
+
+class CSVForm(forms.Form):
+    """Import csv file form."""
+
+    csv_file = forms.FileField()
+
+    def clean_csv(self):
+        csv = self.cleaned_data['csv_file']
+
+        if csv:
+            ext = csv.name.split('.')[-1]
+
+            if ext != 'csv':
+                raise forms.ValidationError('File type not supported')
+
+        return csv
