@@ -1,0 +1,61 @@
+{% extends 'clients/layouts/master.html' %}
+{% load static %}
+{% block title %}Category | Create{% endblock %}
+
+{% block styles %}
+<!-- Plugins css -->
+<link href="{% static 'libs/switchery/switchery.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/dropify/dropify.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <a href="{% url 'client:category' %}" class="btn btn-success waves-effect waves-light">Category
+                        List</a>
+                </div>
+                <h4 class="page-title">Upload Category</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    {% include 'layouts/event.html' %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="csv_file">File: </label>
+                            <input type="file" name="csv_file" id="csv_file" required class="form-control">
+                        </div>
+                        <div class="form-group mb-0">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div> <!-- end container-fluid -->
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'libs/switchery/switchery.min.js' %}"></script>
+<script src="{% static 'libs/dropify/dropify.min.js' %}"></script>
+<script src="{% static 'js/pages/form-advanced.init.js' %}"></script>
+<script src="{% static 'js/pages/form-fileuploads.init.js' %}"></script>
+{% endblock %}

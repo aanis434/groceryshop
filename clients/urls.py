@@ -31,6 +31,8 @@ category_urlpatterns = [
                                               login_url='client:login'), name='categoryEdit'),
     path('category/delete/<pk>', login_required(views.CategoryDeleteView.as_view(),
                                                 login_url='client:login'), name='categoryDelete'),
+    path('category/upload', login_required(views.CategoryUploadView.as_view(),
+                                           login_url='client:login'), name='categoryUpload'),
 ]
 
 product_urlpatterns = [
