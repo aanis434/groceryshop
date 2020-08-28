@@ -1,0 +1,37 @@
+.nav-brand img {
+    padding-top: 13px;
+    max-width: 100px;
+}
+
+.search_blocks button.btn.search_btn {
+    font-size: 10px;
+}
+
+.form-control {
+    height: 40px;
+}
+
+.input-group {
+    padding-top: 11px;
+}
+
+.blocks.search_blocks {
+    max-width: 90%;
+}
+
+.general_head_right ul li a {
+    color: #fff;
+}
+
+.general_head_right {
+    padding-top: 18px;
+}
+
+.general_head_right ul li a span {
+    background: #fff;
+    color: #2bb14e;
+}
+
+.footer-middle {
+    padding-top: 50px;
+}
