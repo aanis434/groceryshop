@@ -7,41 +7,31 @@ def generate_category():
 
     for parent in parent_category:
         if parent.parent_category.count() > 0:
-            categories += "<li class=\"u-has-submenu u-header-collapse__submenu\">" \
-                          "<a class=\"u-header-collapse__nav-link u-header-collapse__nav-pointer\" " \
-                          "href=\"javascript:;\" data-toggle=\"collapse\" " \
-                          "aria-controls=\"headerSidebarHomeCollapse\" " \
-                          "data-target=\"#header_category_" + str(parent.id) + "\">" + parent.name + "</a>" \
-                          "<div id=\"header_category_"+str(parent.id)+"\" class=\"collapse\" " \
-                          "data-parent=\"#headerSidebarContent\">" \
-                          "<ul id=\"headerSidebarHomeMenu\" class=\"u-header-collapse__nav-list\">"
-
-            categories += generate_sub_categories(parent)
-            categories += "</ul></div></li>"
+            categories += "<li class=\"active has-sub\"><a href=\"/{}/\">" \
+                          "<span>{}</span></a>".format(parent.slug, parent.name)
+            categories += "<ul>"
+            categories += generate_sub_categories(parent, parent.slug)
+            categories += "</ul></li>"
         else:
-            categories += "<li><a class=\"u-header-collapse__submenu-nav-link\" " \
-                          "href=\"/{}\">{}</a></li>".format(parent.slug, parent.name)
+            categories += "<li><a href=\"/{}/\"><span>{}</span></a></li>".format(parent.slug, parent.name)
 
     return categories
 
 
-def generate_sub_categories(parent):
+def generate_sub_categories(parent, parent_slug):
     sub_categories = ''
+    child_slug = parent_slug
 
     for child in parent.parent_category.all():
         if child.parent_category.count() > 0:
-            sub_categories += "<li class=\"u-has-submenu u-header-collapse__submenu\">" \
-                          "<a class=\"u-header-collapse__nav-link u-header-collapse__nav-pointer submenu\" " \
-                          "href=\"javascript:;\" aria-controls=\"headerSidebarHomeCollapse\" " \
-                          "data-target=\"#header_category_" + str(child.id) + "\">" + child.name + "</a>" \
-                          "<div id=\"header_category_" + str(child.id) + "\" class=\"collapse\" " \
-                          "data-parent=\"#headerSidebarContent\">" \
-                          "<ul id=\"headerSidebarHomeMenu\" class=\"u-header-collapse__nav-list\">"
-
-            sub_categories += generate_sub_categories(child)
-            sub_categories += "</ul></div></li>"
+            sub_categories += "<li class=\"has-sub\"><a href=\"/{}/{}/\">" \
+                          "<span>{}</span></a>".format(child_slug, child.slug, child.name)
+            sub_categories += "<ul>"
+            child_slug += "/{}".format(child.slug)
+            sub_categories += generate_sub_categories(child, child_slug)
+            sub_categories += "</ul></li>"
+            child_slug = parent_slug
         else:
-            sub_categories += "<li><a class=\"u-header-collapse__submenu-nav-link\" href=\"../home/index.html\">" \
-                          + child.name + "</a></li>"
+            sub_categories += "<li><a href=\"/{}/{}/\"><span>{}</span></a></li>".format(parent_slug, child.slug, child.name)
 
     return sub_categories

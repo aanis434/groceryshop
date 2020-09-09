@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="{% static 'frontend/img/favicon.png' %}" type="image/gif" sizes="16x16">
         
-        <title>{% block title %}{% endblock %}</title>
+        <title>GroceryShop | {% block title %}{% endblock %}</title>
          
         <!-- Custom CSS -->
         <link href="{% static 'frontend/css/styles.css' %}" rel="stylesheet">
@@ -57,69 +57,7 @@
                                     <div class="collapse" id="myCategories">
                                         <div id="cats_menu">
                                             <ul>
-                                                <li class="active has-sub"><a href="javascript:void(0);"><span>Category</span></a>
-                                                    <ul>
-                                                         <li><a href="grocery.html"><span>Grocery</span></a></li>
-                                                         <li><a href="organic.html"><span>Organic</span></a></li>
-                                                         <li><a href="electronics.html"><span>Electronics</span></a></li>
-                                                         <li><a href="woocommerce.html"><span>Fashion</span></a></li>
-                                                         <li><a href="digital.html"><span>Digital</span></a></li>
-                                                         <li><a href="beauty.html"><span>Beauty</span></a></li>
-                                                    </ul>
-                                                    <ul>
-                                                         <li class="has-sub"><a href="javascript:void(0);"><span>Digital</span></a>
-                                                            <ul>
-                                                               <li><a href="detail-1.html"><span>Sub Product</span></a></li>
-                                                               <li><a href="detail-2.html"><span>Sub Product</span></a></li>
-                                                               <li><a href="detail-3.html"><span>Sub Product</span></a></li>
-                                                               <li><a href="detail-4.html"><span>Sub Product</span></a></li>
-                                                            </ul>
-                                                         </li>
-                                                    </ul>
-                                               </li>
-                                               <li class="has-sub"><a href="javascript:void(0);"><span>Brand</span></a>
-                                                    <ul>
-                                                         <li><a href="search-list-layout.html"><span>Nike</span></a></li>
-                                                         <li><a href="search-list-layout.html"><span>Apple</span></a></li>
-                                                         <li><a href="search-list-layout.html"><span>Hackerl</span></a></li>
-                                                         <li><a href="search-list-layout.html"><span>Tuffan</span></a></li>
-                                                         <li><a href="search-list-layout.html"><span>Orio</span></a></li>
-                                                         <li><a href="search-list-layout.html"><span>Kite</span></a></li>
-                                                    </ul>
-                                               </li>
-                                               <li class="has-sub"><a href="javascript:void(0);"><span>Pages</span></a>
-                                                    <ul>
-                                                         <li><a href="about.html"><span>About Us</span></a></li>
-                                                         <li><a href="blog.html"><span>Blog grid</span></a></li>
-                                                         <li><a href="blog-detail.html"><span>Blog Detail</span></a></li>
-                                                         <li><a href="add-to-cart.html"><span>Add To Cart</span></a></li>
-                                                         <li><a href="payment-methode.html"><span>Payment</span></a></li>
-                                                         <li><a href="faq.html"><span>FAQ's</span></a></li>
-                                                    </ul>
-                                               </li>
-                                               <li class="has-sub"><a href="javascript:void(0);"><span>Products</span></a>
-                                                    <ul>
-                                                         <li><a href="4-column.html"><span>3 Columns products</span></a></li>
-                                                         <li><a href="5-column.html"><span>4 Columns products</span></a></li>
-                                                         <li><a href="6-column.html"><span>5 Columns products</span></a></li>
-                                                         <li><a href="4-column.html"><span>6 Columns products</span></a></li>
-                                                         <li><a href="4-column.html"><span>7 Columns products</span></a></li>
-                                                         <li><a href="4-column.html"><span>8 Columns products</span></a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="4-column.html"><span>Features</span></a></li>
-                                               <li><a href="contact.html"><span>Contact</span></a></li>
-                                               <li class="has-sub"><a href="javascript:void(0);"><span>Layouts</span></a>
-                                                    <ul>
-                                                         <li><a href="search-list-layout.html"><span>With Left Sidebar</span></a></li>
-                                                         <li><a href="search-sidebar.html"><span>With Right Sidebar</span></a></li>
-                                                         <li><a href="search-sidebar-2.html"><span>Full Width banner</span></a></li>
-                                                         <li><a href="search-sidebar-3.html"><span>Slider Banner</span></a></li>
-                                                         <li><a href="search-sidebar-4.html"><span>Fill Width Search</span></a></li>
-                                                         <li><a href="search-sidebar-5.html"><span>Boxed Layout</span></a></li>
-                                                    </ul>
-                                               </li>
-                                               <li><a href="javascript:void(0);"><span>Buy Odex</span></a></li>
+                                                {{header_categories|safe}}
                                             </ul>
                                         </div>
                                     </div>
@@ -171,33 +109,6 @@
             {% endblock %}
         <!-- ========== END MAIN CONTENT ========== -->
 
-        <!-- ============================ Call To Action ================================== -->
-            <section class="theme-bg call_action_wrap-wrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            
-                            <div class="call_action_wrap">
-                                <div class="call_action_wrap-head">
-                                    <h3>Do You Have Questions ?</h3>
-                                    <span>We'll help you to grow your career and growth.</span>
-                                </div>
-                                <div class="newsletter_box">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Subscribe here...">
-                                        <div class="input-group-append">
-                                        <button class="btn search_btn" type="button"><i class="fas fa-arrow-alt-circle-right"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- ============================ Call To Action End ================================== -->
-            
             <!-- ============================ Footer Start ================================== -->
             <footer class="dark-footer skin-dark-footer style-2">
                 <div class="footer-middle">

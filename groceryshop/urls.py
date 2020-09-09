@@ -21,15 +21,14 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    path('', include('products.urls', namespace='product')),
     path('cart/', TemplateView.as_view(template_name='cart.html')),
     path('checkout/', TemplateView.as_view(template_name='checkout.html')),
     path('login-register/', TemplateView.as_view(template_name='login_register.html')),
     path('contact/', TemplateView.as_view(template_name='contact.html')),
-    path('shop/', TemplateView.as_view(template_name='shop.html')),
     path('about/', TemplateView.as_view(template_name='about.html')),
     path('faq/', TemplateView.as_view(template_name='faq.html')),
     path('track-order/', TemplateView.as_view(template_name='track_order.html')),
     path('it-admin/', admin.site.urls),
     path('admin/', include('clients.urls', namespace='client')),
+    path('', include('products.urls', namespace='product')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
