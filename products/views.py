@@ -22,57 +22,76 @@ class FilterByCategoryView(ListView):
     model = Category
 
     def category(self):
+        pathinfo = self.request.path_info.strip('/').split('/')
         categories = ''
         parent_category = Category.objects.filter(parent_id=None, status=True)
 
         for parent in parent_category:
             categories += "<div class=\"single_filter_card\">"
+            class_value = "collapsed"
+            aria_value = "false"
+            div_class = ""
+
+            if parent.slug in pathinfo:
+                class_value = ""
+                aria_value = "true"
+                div_class = "show"
+
             if parent.parent_category.count() > 0:
+                # print("parent", parent.id)
                 categories += "<h5>"
-                categories += "<a href=\"/{}/\" role=\"button\" class=\"collapsed\">{}</a>".format(parent.slug, parent.name)
-                categories += "<a href=\"#category_{}\" data-toggle=\"collapse\" class=\"collapsed\" " \
-                              "aria-expanded=\"false\"><i class=\"accordion-indicator ti-angle-down\"></i></a>".format(parent.id)
+                categories += "<a href=\"/{}/\" role=\"button\" class=\"{}\">{}</a>".format(parent.slug, class_value, parent.name)
+                categories += "<a href=\"#category_{}\" data-toggle=\"collapse\" class=\"{}\" " \
+                              "aria-expanded=\"{}\"><i class=\"accordion-indicator ti-angle-down\"></i></a>".format(parent.id, class_value, aria_value)
                 categories += "</h5>"
 
-                categories += "<div class=\"collapse\" id=\"category_{}\" data-parent=\"#shop-categories\">".format(parent.id)
+                categories += "<div class=\"collapse {}\" id=\"category_{}\" data-parent=\"#shop-categories\">".format(div_class, parent.id)
                 categories += "<div class=\"card-body\">"
                 categories += "<div class=\"inner_widget_link\">"
                 categories += "<ul>"
-                categories += self.sub_categories(parent, parent.slug)
+                categories += self.sub_categories(parent, parent.slug, pathinfo)
                 categories += "</ul></div></div></div>"
             else:
-                categories += "<h5><a href=\"/{}/\" class=\"collapsed\">{}</a></h5>".format(parent.slug, parent.name)
+                categories += "<h5><a href=\"/{}/\" class=\"{}\">{}</a></h5>".format(parent.slug, class_value, parent.name)
             categories += "</div>"
 
         return categories
 
-    def sub_categories(self, parent, parent_slug):
-        sub_categories = "<div id=\"shop-sub-categories_{}\">".format(parent.slug)
+    def sub_categories(self, parent, parent_slug, pathinfo):
+        sub_categories = "<div id=\"shop-sub-categories_{}\">".format(parent.id)
         child_slug = parent_slug
 
         for child in parent.parent_category.all():
-            sub_categories += "<div class=\"single_filter_card\">"
+            class_value = "collapsed"
+            aria_value = "false"
+            div_class = ""
+
+            if child.slug in pathinfo:
+                class_value = ""
+                aria_value = "true"
+                div_class = "show"
 
             if child.parent_category.count() > 0:
+                sub_categories += "<div class=\"single_filter_card\">"
                 sub_categories += "<h5>"
                 sub_categories += "<a href=\"/{}/{}/\" role=\"button\" " \
-                                  "class=\"collapsed\">{}</a>".format(child_slug, child.slug, child.name)
-                sub_categories += "<a href=\"#category_{}\" data-toggle=\"collapse\" class=\"collapsed\" " \
-                                  "aria-expanded=\"false\"><i class=\"accordion-indicator ti-angle-down\">" \
-                                  "</i></a>".format(child.id)
+                                  "class=\"{}\">{}</a>".format(child_slug, child.slug, class_value, child.name)
+                sub_categories += "<a href=\"#category_{}\" data-toggle=\"collapse\" class=\"{}\" " \
+                                  "aria-expanded=\"{}\"><i class=\"accordion-indicator ti-angle-down\">" \
+                                  "</i></a>".format(child.id, class_value, aria_value)
                 sub_categories += "</h5>"
 
-                sub_categories += "<div class=\"collapse\" id=\"category_{}\" " \
-                                  "data-parent=\"#shop-sub-categories_{}\">".format(child.id, parent.slug)
+                sub_categories += "<div class=\"collapse {}\" id=\"category_{}\" " \
+                                  "data-parent=\"#shop-sub-categories_{}\">".format(div_class, child.id, parent.id)
                 sub_categories += "<div class=\"card-body\">"
                 sub_categories += "<div class=\"inner_widget_link\">"
                 sub_categories += "<ul>"
                 child_slug += "/{}".format(child.slug)
-                sub_categories += self.sub_categories(child, child_slug)
+                sub_categories += self.sub_categories(child, child_slug, pathinfo)
                 sub_categories += "</ul></div></div></div></div>"
                 child_slug = parent_slug
             else:
-                sub_categories += "<li><a href=\"/{}/{}/\">{}</a></li>".format(parent_slug, child.slug, child.name)
+                sub_categories += "<h5><a class=\"{}\" href=\"/{}/{}/\">{}</a></h5>".format(class_value, parent_slug, child.slug, child.name)
         sub_categories += "</div>"
 
         return sub_categories

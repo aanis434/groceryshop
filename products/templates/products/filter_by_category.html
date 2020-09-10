@@ -484,15 +484,9 @@
 {% block scripts %}
     <script>
         $(document).ready(function() {
-        $('.collapse').on('show.bs.collapse', function () {
-            print();
-            $('.collapse.in').each(function(){
-                $(this).collapse('hide');
-            });
-          });
-            $('#shop-categories>div>h5>a').on('click', function () {
-                $('#shop-categories').find('#shop-sub-categories div').collapse('hide');
-            });
+            $('.single_filter_card>div').on('hidden.bs.collapse', function () {
+              $(this).next('.single_filter_card>div').collapse("hide");
+            })
         });
     </script>
 {% endblock %}
